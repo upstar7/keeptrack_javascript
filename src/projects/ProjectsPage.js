@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MOCK_PROJECTS } from './MockProjects';
 import ProjectList from './ProjectList';
-// import { MOCK_PROJECTS } from './MockProjects';
 
 function ProjectsPage() {
 
