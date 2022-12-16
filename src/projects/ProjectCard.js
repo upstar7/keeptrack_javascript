@@ -8,7 +8,7 @@ import { Project } from "./Project";
 function ProjectCard( props ) {
     const {project, onEdit} = props;
 
-    const formatDescription = (desc) => desc.substring(0, 60) + "...";
+    const formatDescription = (desc) => desc.length >= 60 ? desc.substring(0, 60) + "..." : desc;
 
     const handleEditClick = (projectBeingEdited)=> {
         onEdit(projectBeingEdited);
