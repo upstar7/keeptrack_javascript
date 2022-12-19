@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import { Project } from "./Project";
 function ProjectForm({ project: initialProject, onCancel, onSave }) {
     const [project, setProject] = useState(initialProject);
+    const [errors, setErrors] = useState({
+        name: "",
+        description: "",
+        budget: "",
+    });
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!isValid()) return;
         onSave(project);
     };
 
@@ -29,7 +35,33 @@ function ProjectForm({ project: initialProject, onCancel, onSave }) {
             updatedProject = new Project({ ...project, ...change });
             return updatedProject;
         });
+        setErrors(() => validate(updatedProject));
     };
+
+    function validate(project) {
+        let err = { name: "", description: "", budget: "" };
+        if (project.name.length === 0) {
+            err.name = "Name is required.";
+        }
+        if (project.name.length > 0 && project.name.length < 3) {
+            err.name = "Name needs to be at least 3 characters.";
+        }
+        if (project.description.length === 0) {
+            err.description = "Description is required.";
+        }
+        if (project.budget === 0) {
+            err.budget = "Budget is required.";
+        }
+        return err;
+    }
+
+    function isValid() {
+        return (
+            errors.name.length === 0 &&
+            errors.description.length === 0 &&
+            errors.budget.length === 0
+        );
+    }
 
     return (
         <form className="input-group vertical" onSubmit={handleSubmit}>
@@ -41,6 +73,11 @@ function ProjectForm({ project: initialProject, onCancel, onSave }) {
                 value={project.name}
                 onChange={handleChange}
             />
+            {errors.name.length > 0 && (
+                <div className="card error">
+                    <p>{errors.name}</p>
+                </div>
+            )}
             <label htmlFor="descripttion">Project Description</label>
             <input
                 type="text"
@@ -49,6 +86,11 @@ function ProjectForm({ project: initialProject, onCancel, onSave }) {
                 value={project.description}
                 onChange={handleChange}
             />
+            {errors.description.length > 0 && (
+                <div className="card error">
+                    <p>{errors.description}</p>
+                </div>
+            )}
             <label htmlFor="budget">Project Budget</label>
             <input
                 type="number"
@@ -57,6 +99,11 @@ function ProjectForm({ project: initialProject, onCancel, onSave }) {
                 value={project.budget}
                 onChange={handleChange}
             />
+            {errors.budget.length > 0 && (
+                <div className="card error">
+                    <p>{errors.budget}</p>
+                </div>
+            )}
             <label htmlFor="isActive">Active?</label>
             <input
                 type="checkbox"
