@@ -6,11 +6,11 @@ const url = `${baseUrl}/projects`;
 function translateStatusToErrorMessage(status) {
     switch (status) {
         case 401:
-            return "Please login again";
+            return "Please login again.";
         case 403:
-            return "You do not have permission to view the projects.";
+            return "You do not have permission to view the project(s).";
         default:
-            return "There was an error retrieing the project. Please try again.";
+            return "There was an error retrieving the project(s). Please try again.";
     }
 }
 
@@ -34,9 +34,10 @@ function parseJSON(response) {
     return response.json();
 }
 
+// eslint-disable-next-line
 function delay(ms) {
     return function(x) {
-        return Promise((resolve) => setTimeout(() => resolve(x), ms));
+        return new Promise((resolve) => setTimeout(() => resolve(x), ms));
     };
 }
 
@@ -46,8 +47,8 @@ const projectAPI = {
             .then(delay(600))
             .then(checkStatus)
             .then(parseJSON)
-            .then((project) => {
-                return project.map((p) => {
+            .then((projects) => {
+                return projects.map((p) => {
                     return new Project(p);
                 });
             })
@@ -59,4 +60,5 @@ const projectAPI = {
             });
     },
 };
+
 export { projectAPI };
