@@ -57,7 +57,7 @@
       "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
       "contractTypeId": 2,
       "contractSignedOn": "2015-03-05T17:00:16.696Z",
-      "budget": 67030,
+      "budget": 670300,
       "isActive": false
     },
     {
@@ -537,8 +537,8 @@
       "imageUrl": "/assets/placeimg_500_300_arch10.jpg",
       "contractTypeId": 2,
       "contractSignedOn": "2015-01-21T07:03:49.836Z",
-      "budget": 74221,
-      "isActive": false
+      "budget": 90,
+      "isActive": true
     },
     {
       "id": 55,
@@ -942,7 +942,7 @@
     },
     {
       "id": 95,
-      "name": "Armstrong - Hands",
+      "name": "Armstrong - HandsOn",
       "description": "Persistent 3rd generation capability. Sint omnis asperiores voluptas sapiente delectus blanditiis earum ut voluptatem.",
       "imageUrl": "/assets/placeimg_500_300_arch6.jpg",
       "contractTypeId": 2,
